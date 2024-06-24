@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.14
+- Added fixes from issues:
+https://github.com/zotify-dev/zotify/pull/93/commits/7498495cd2cf24182c3aaa480fc93c9784874d5c
+https://github.com/zotify-dev/zotify/issues/120#issuecomment-2093971693
+- Modified README
+
 ## 0.6.13
 - Only replace chars with _ when required
 - Added defaults to README

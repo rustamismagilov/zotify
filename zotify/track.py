@@ -187,12 +187,14 @@ def download_track(mode: str, track_id: str, extra_keys=None, disable_progressba
 
         # a song with the same name is installed
         if not check_id and check_name:
-            c = len([file for file in Path(filedir).iterdir() if re.search(f'^{filename}_', str(file))]) + 1
+            filename_str = str(PurePath(filename))
+            escaped_filename = re.escape(filename_str)
+            pattern = re.compile(f'^{escaped_filename}_')
 
-            fname = PurePath(PurePath(filename).name).parent
-            ext = PurePath(PurePath(filename).name).suffix
+            c = len([file for file in Path(filedir).iterdir() if pattern.search(str(file))]) + 1
 
-            filename = PurePath(filedir).joinpath(f'{fname}_{c}{ext}')
+            fname = PurePath(filename).stem
+            ext = PurePath(filename).suffix
 
     except Exception as e:
         Printer.print(PrintChannel.ERRORS, '###   SKIPPING SONG - FAILED TO QUERY METADATA   ###')
